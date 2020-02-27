@@ -1,6 +1,6 @@
 package pl.coderstrust.christmas;
 
-public class christmasTree {
+public class ChristmasTree {
     public static void main(String[] args) {
         printChristmasTree(10);
     }
@@ -10,14 +10,14 @@ public class christmasTree {
             for (int j = 1; j <= size - i; j++) {
                 System.out.print(" ");
             }
-            for (int k = 1; k <= ((2 * i) - 1); k++) {
+            for (int j = 1; j <= (2 * i) - 1; j++) {
                 System.out.print("*");
             }
             System.out.println();
         }
-        for (int y = 1; y < size; y++) {
+        for (int i = 1; i < size; i++) {
             System.out.print(" ");
         }
-        System.out.print("*");
+        System.out.print("**");
     }
 }
