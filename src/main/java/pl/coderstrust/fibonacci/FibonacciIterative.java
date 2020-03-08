@@ -14,16 +14,14 @@ public class FibonacciIterative {
         if (fibonacciNumberInOrder <= 1) {
             return fibonacciNumberInOrder;
         }
-        {
-            long priev = 0;
-            long current = 1;
-            long next = priev + current;
-            for (int i = 0; i < fibonacciNumberInOrder - 1; i++) {
-                priev = current;
-                current = next;
-                next = priev + current;
-            }
-            return current;
+        long priev = 0;
+        long current = 1;
+        long next = 1;
+        for (int i = 0; i < fibonacciNumberInOrder - 1; i++) {
+            priev = current;
+            current = next;
+            next = priev + current;
         }
+        return current;
     }
 }
