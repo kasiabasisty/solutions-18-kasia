@@ -6,12 +6,12 @@ public class SelectionSort {
     public static void main(String[] args) {
 
         int[] array = {-589, -621, 62, 0, -14};
-        int[] sortedArray = selectionSort(array);
+        int[] sortedArray = sort(array);
         System.out.println(Arrays.toString(array));
         System.out.println(Arrays.toString(sortedArray));
     }
 
-    private static int[] selectionSort(int[] array) {
+    public static int[] sort(int[] array) {
         int[] sortedArray = array.clone();
         for (int i = 0; i < sortedArray.length; i++) {
             int maxIndex = i;
