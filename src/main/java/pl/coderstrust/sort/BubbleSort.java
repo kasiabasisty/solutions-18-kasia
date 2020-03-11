@@ -12,20 +12,20 @@ public class BubbleSort {
     }
 
     private static int[] bubbleSort(int[] array) {
-        int[] sortedArray = new int[array.length];
-        for (int i = 0; i == array.length; i++) {
-            sortedArray[i] = 0;
-        }
-        System.arraycopy(array, 0, sortedArray, 0, array.length);
+        int[] sortedArray = array.clone();
         for (int i = 0; i < sortedArray.length - 1; i++) {
             for (int j = 0; j < sortedArray.length - 1; j++) {
                 if (sortedArray[j + 1] > sortedArray[j]) {
-                    int temp = sortedArray[j + 1];
-                    sortedArray[j + 1] = sortedArray[j];
-                    sortedArray[j] = temp;
+                    swap(sortedArray, j + 1, j);
                 }
             }
         }
         return sortedArray;
+    }
+
+    private static void swap(int[] array, int a, int b) {
+        int temp = array[a];
+        array[a] = array[b];
+        array[b] = temp;
     }
 }
