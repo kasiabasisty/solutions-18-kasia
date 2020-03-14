@@ -18,7 +18,7 @@ public class SieveOfEratosthenes {
         int[] array = createInitialArray(maximumNumber);
         int countOfNonPrimeNumbers = markNonPrimeNumbers(array);
         int countOfPrimeNumbers = array.length - countOfNonPrimeNumbers;
-        return extractPrimesNumbers(array, countOfPrimeNumbers);
+        return extractPrimeNumbers(array, countOfPrimeNumbers);
     }
 
     private static int[] createInitialArray(int size) {
@@ -44,21 +44,12 @@ public class SieveOfEratosthenes {
         return nonPrimeNumbers;
     }
 
-    private static int[] extractPrimesNumbers(int[] array, int countOfPrimeNumbers) {
+    private static int[] extractPrimeNumbers(int[] array, int countOfPrimeNumbers) {
         int[] primeNumbers = new int[countOfPrimeNumbers];
         int position = 0;
         for (int i = 2; i < array.length; i++) {
             if (array[i] != NON_PRIME_MARKER) {
                 primeNumbers[position++] = array[i];
-            }
-        }
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - 1; j++) {
-                if (array[j] == 0) {
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
             }
         }
         return primeNumbers;
