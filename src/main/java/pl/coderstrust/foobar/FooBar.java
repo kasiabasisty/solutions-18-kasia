@@ -9,17 +9,21 @@ public class FooBar {
     }
 
     public static List<String> getFooBar(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Number can't be lower than zero!");
+        }
         List<String> result = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i <= number; i++) {
-            String line = "";
-            line += i;
+            sb.append(i);
             if (i % 3 == 0) {
-                line += "Foo";
+                sb.append("Foo");
             }
             if (i % 5 == 0) {
-                line += "Bar";
+                sb.append("Bar");
             }
-            result.add(line);
+            result.add(sb.toString());
+            sb.setLength(0);
         }
         return result;
     }

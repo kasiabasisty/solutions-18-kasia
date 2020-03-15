@@ -7,11 +7,12 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FooBarTest {
 
     @Test
-    public void testAssertList() {
+    public void shouldReturnCorrectResult() {
         //Given
         int input = 15;
         List<String> expected = Arrays.asList("0FooBar", "1", "2", "3Foo", "4", "5Bar", "6Foo", "7", "8", "9Foo",
@@ -21,5 +22,11 @@ class FooBarTest {
 
         //Then
         assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldTrowExceptionForInvalidSize() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> FooBar.getFooBar(-1));
+        assertThat(exception.getMessage(), is("Number can't be lower than zero!"));
     }
 }
