@@ -10,15 +10,11 @@ public class MultiplicationTable {
         if (size < 0) {
             throw new IllegalArgumentException("Size can't be lower than zero!");
         }
-        int[][] multiplicationTable = new int[size + 1][size + 1];
+        int[][] multiplicationTable = new int[size][size];
 
-        for (int i = 0; i <= size; i++) {
-            multiplicationTable[i][0] = i;
-            multiplicationTable[0][i] = i;
-        }
         for (int i = 1; i <= size; i++) {
             for (int j = 1; j <= size; j++) {
-                multiplicationTable[i][j] = i * j;
+                multiplicationTable[i - 1][j - 1] = i * j;
             }
         }
         return multiplicationTable;
