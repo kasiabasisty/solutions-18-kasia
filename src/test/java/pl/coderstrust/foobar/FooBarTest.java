@@ -17,6 +17,7 @@ class FooBarTest {
         int input = 15;
         List<String> expected = Arrays.asList("0FooBar", "1", "2", "3Foo", "4", "5Bar", "6Foo", "7", "8", "9Foo",
                 "10Bar", "11", "12Foo", "13", "14", "15FooBar");
+
         //When
         List<String> actual = FooBar.getFooBar(input);
 
@@ -25,7 +26,7 @@ class FooBarTest {
     }
 
     @Test
-    public void shouldTrowExceptionForInvalidSize() {
+    public void shouldTrowExceptionForInvalidNumber() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> FooBar.getFooBar(-1));
         assertThat(exception.getMessage(), is("Number can't be lower than zero!"));
     }
