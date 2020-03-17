@@ -1,21 +1,29 @@
 package pl.coderstrust.pascaltriangle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PascalTriangle {
     public static void main(String[] args) {
-        printPascalTriangle(7);
+        List<String> pascalTriangle = getPascalTriangle(5);
+        printPascalTriangle(pascalTriangle);
     }
 
-    public static void printPascalTriangle(int size) {
+    public static List<String> getPascalTriangle(int size) {
+        if (size <= 0) {
+            throw new IllegalArgumentException("Size can't be lower or equal to zero!");
+        }
+        List<String> result = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size - i - 1; j++) {
-                System.out.printf("%3s", "");
-            }
             for (int j = 0; j <= i; j++) {
                 long term = factorial(i) / (factorial(j) * factorial(i - j));
-                System.out.printf("%6d", term);
+                sb.append(term + " ");
             }
-            System.out.println();
+            result.add(sb.toString().trim());
+            sb.setLength(0);
         }
+        return result;
     }
 
     private static long factorial(int number) {
@@ -25,5 +33,9 @@ public class PascalTriangle {
             number--;
         }
         return result;
+    }
+
+    public static void printPascalTriangle(List<String> pascalTriangle) {
+        pascalTriangle.forEach(s -> System.out.println(s));
     }
 }
