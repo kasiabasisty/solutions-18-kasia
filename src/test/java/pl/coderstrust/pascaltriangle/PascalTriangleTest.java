@@ -25,7 +25,7 @@ class PascalTriangleTest {
     }
 
     @Test
-    public void shouldTrowExceptionForInvalidNumber() {
+    public void shouldTrowExceptionForInvalidSize() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> PascalTriangle.getPascalTriangle(-1));
         assertThat(exception.getMessage(), is("Size can't be lower or equal to zero!"));
     }
