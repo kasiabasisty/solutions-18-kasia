@@ -10,7 +10,7 @@ class FibonacciCheckerTest {
     private FibonacciChecker fibonacciChecker = new FibonacciChecker();
 
     @Test
-    public void shouldSayIfNumberIsFibonacciNumber() {
+    public void shouldReturnTrueForFibonacciNumber() {
         //Given
         int input = 5;
         boolean expected = true;
@@ -23,8 +23,27 @@ class FibonacciCheckerTest {
     }
 
     @Test
+    public void shouldReturnFalseForNonFibonacciNumber() {
+        //Given
+        int input = 10;
+        boolean expected = false;
+
+        //When
+        boolean actual = fibonacciChecker.isFibonacciNumber(input);
+
+        //Then
+        assertThat(actual, is(expected));
+    }
+
+    @Test
     public void shouldThrowExceptionForInvalidNumber() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(-1));
         assertThat(exception.getMessage(), is("Fibonacci number can not be lower than zero!"));
+    }
+
+    @Test
+    public void shouldThrowExceptionForTooBigNumber() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(200000));
+        assertThat(exception.getMessage(), is("Ooops! We don't have time for that!"));
     }
 }

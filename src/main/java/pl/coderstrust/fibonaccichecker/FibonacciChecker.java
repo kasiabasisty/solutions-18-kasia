@@ -1,34 +1,31 @@
 package pl.coderstrust.fibonaccichecker;
 
+import pl.coderstrust.fibonacci.FibonacciIterative;
+
 import java.util.HashSet;
+import java.util.Set;
 
 public class FibonacciChecker {
-    HashSet<Long> fibonacciNumbers = new HashSet<>();
+    private Set<Long> fibonacciNumbers = new HashSet<>();
 
     public static void main(String[] args) {
         FibonacciChecker fibonacciChecker = new FibonacciChecker();
-        boolean isFibonacciNumber = fibonacciChecker.isFibonacciNumber(-1);
+        boolean isFibonacciNumber = fibonacciChecker.isFibonacciNumber(0);
         System.out.println(isFibonacciNumber);
     }
 
     public FibonacciChecker() {
-        long priev = 0;
-        long current = 1;
-        long next = 1;
-        fibonacciNumbers.add(next);
-        while (next < 100000) {
-            priev = current;
-            current = next;
-            next = priev + current;
-            fibonacciNumbers.add(next);
+        for (int i = 0; i <= 100000; i++) {
+            fibonacciNumbers.add(FibonacciIterative.fibonacci(i));
         }
     }
 
     boolean isFibonacciNumber(long number) {
         if (number < 0) {
             throw new IllegalArgumentException("Fibonacci number can not be lower than zero!");
+        } else if (number > 100000) {
+            throw new IllegalArgumentException("Ooops! We don't have time for that!");
         }
-
         return fibonacciNumbers.contains(number);
     }
 }

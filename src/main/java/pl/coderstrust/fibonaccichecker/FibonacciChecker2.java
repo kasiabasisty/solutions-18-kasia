@@ -1,9 +1,10 @@
 package pl.coderstrust.fibonaccichecker;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class FibonacciChecker2 {
-    HashMap<Long, Boolean> fibonacciNumbers = new HashMap<>();
+    private Map<Long, Boolean> cache = new HashMap<>();
 
     public static void main(String[] args) {
         FibonacciChecker2 fibonacciChecker2 = new FibonacciChecker2();
@@ -15,13 +16,14 @@ public class FibonacciChecker2 {
         if (number < 0) {
             throw new IllegalArgumentException("Fibonacci number can not be lower than zero!");
         }
-        if (fibonacciNumbers.containsKey(number)) {
-            return fibonacciNumbers.get(number);
-        } else {
+        if (cache.containsKey(number)) {
+            return cache.get(number);
+        }
+        {
             long formula1 = 5 * (number * number) + 4;
             long formula2 = 5 * (number * number) - 4;
             boolean result = isPerfectSquare(formula1) || isPerfectSquare(formula2);
-            fibonacciNumbers.put(number, result);
+            cache.put(number, result);
             return result;
         }
     }
