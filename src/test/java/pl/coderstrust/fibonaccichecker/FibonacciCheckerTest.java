@@ -24,7 +24,7 @@ class FibonacciCheckerTest {
 
     @ParameterizedTest
     @ValueSource(longs = {-500, -1})
-    public void shouldThrowExceptionForInvalidNumber(long number) {
+    public void shouldThrowExceptionForTooLowNumber(long number) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(number));
         assertThat(exception.getMessage(), is("Number cannot be lower than zero."));
     }
