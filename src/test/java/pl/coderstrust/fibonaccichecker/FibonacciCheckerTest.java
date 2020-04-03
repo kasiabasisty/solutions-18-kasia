@@ -1,49 +1,38 @@
 package pl.coderstrust.fibonaccichecker;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FibonacciCheckerTest {
     private FibonacciChecker fibonacciChecker = new FibonacciChecker();
 
-    @Test
-    public void shouldReturnTrueForFibonacciNumber() {
-        //Given
-        int input = 5;
-        boolean expected = true;
-
-        //When
-        boolean actual = fibonacciChecker.isFibonacciNumber(input);
-
-        //Then
-        assertThat(actual, is(expected));
+    @ParameterizedTest
+    @ValueSource(longs = {5, 13, 144})
+    public void shouldReturnTrueForFibonacciNumber(long number) {
+        assertTrue(fibonacciChecker.isFibonacciNumber(number));
     }
 
-    @Test
-    public void shouldReturnFalseForNonFibonacciNumber() {
-        //Given
-        int input = 10;
-        boolean expected = false;
-
-        //When
-        boolean actual = fibonacciChecker.isFibonacciNumber(input);
-
-        //Then
-        assertThat(actual, is(expected));
+    @ParameterizedTest
+    @ValueSource(longs = {16, 242, 827})
+    public void shouldReturnFalseForFibonacciNumber(long number) {
+        assertFalse(fibonacciChecker.isFibonacciNumber(number));
     }
 
-    @Test
-    public void shouldThrowExceptionForInvalidNumber() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(-1));
-        assertThat(exception.getMessage(), is("Fibonacci number can not be lower than zero!"));
+    @ParameterizedTest
+    @ValueSource(longs = {-500, -1})
+    public void shouldThrowExceptionForInvalidNumber(long number) {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(number));
+        assertThat(exception.getMessage(), is("Number cannot be lower than zero."));
     }
 
-    @Test
-    public void shouldThrowExceptionForTooBigNumber() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(200000));
-        assertThat(exception.getMessage(), is("Ooops! We don't have time for that!"));
+    @ParameterizedTest
+    @ValueSource(longs = {100001, 555555})
+    public void shouldThrowExceptionForTooBigNumber(long number) {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacciChecker.isFibonacciNumber(number));
+        assertThat(exception.getMessage(), is("Number cannot be greater than one hundred thousand."));
     }
 }

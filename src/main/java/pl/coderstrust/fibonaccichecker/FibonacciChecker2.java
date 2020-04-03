@@ -14,18 +14,16 @@ public class FibonacciChecker2 {
 
     boolean isFibonacciNumber(long number) {
         if (number < 0) {
-            throw new IllegalArgumentException("Fibonacci number can not be lower than zero!");
+            throw new IllegalArgumentException("Number cannot be lower than zero.");
         }
         if (cache.containsKey(number)) {
             return cache.get(number);
         }
-        {
-            long formula1 = 5 * (number * number) + 4;
-            long formula2 = 5 * (number * number) - 4;
-            boolean result = isPerfectSquare(formula1) || isPerfectSquare(formula2);
-            cache.put(number, result);
-            return result;
-        }
+        long formula1 = 5 * (number * number) + 4;
+        long formula2 = 5 * (number * number) - 4;
+        boolean result = isPerfectSquare(formula1) || isPerfectSquare(formula2);
+        cache.put(number, result);
+        return result;
     }
 
     private static boolean isPerfectSquare(long number) {

@@ -22,9 +22,10 @@ public class FibonacciChecker {
 
     boolean isFibonacciNumber(long number) {
         if (number < 0) {
-            throw new IllegalArgumentException("Fibonacci number can not be lower than zero!");
-        } else if (number > 100000) {
-            throw new IllegalArgumentException("Ooops! We don't have time for that!");
+            throw new IllegalArgumentException("Number cannot be lower than zero.");
+        }
+        if (number > 100000) {
+            throw new IllegalArgumentException("Number cannot be greater than one hundred thousand.");
         }
         return fibonacciNumbers.contains(number);
     }
