@@ -2,16 +2,17 @@ package pl.coderstrust.sort;
 
 import java.util.Arrays;
 
-public class SelectionSort {
+public class SelectionSort implements SortingMethod {
     public static void main(String[] args) {
 
         int[] array = {-589, -621, 62, 0, -14};
-        int[] sortedArray = sort(array);
+        int[] sortedArray = new SelectionSort().sort(array);
         System.out.println(Arrays.toString(array));
         System.out.println(Arrays.toString(sortedArray));
     }
 
-    public static int[] sort(int[] array) {
+    @Override
+    public int[] sort(int[] array) {
         int[] sortedArray = array.clone();
         for (int i = 0; i < sortedArray.length; i++) {
             int maxIndex = i;
