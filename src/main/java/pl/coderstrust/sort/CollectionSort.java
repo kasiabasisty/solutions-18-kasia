@@ -15,8 +15,20 @@ public class CollectionSort implements SortingMethod {
 
     @Override
     public int[] sort(int[] array) {
-        List<> list = Arrays.asList(array);
+
+        Integer[] integerArray = new Integer[array.length];
+        for (int i = 0; i < array.length; i++) {
+            integerArray[i] = array[i];
+        }
+
+        List<Integer> list = Arrays.asList(integerArray);
         Collections.sort(list);
-        return array;
+        list.toArray(integerArray);
+
+        int[] sortedArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            sortedArray[i] = integerArray[i];
+        }
+        return sortedArray;
     }
 }

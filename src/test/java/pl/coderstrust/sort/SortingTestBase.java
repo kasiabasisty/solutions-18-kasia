@@ -9,15 +9,17 @@ public abstract class SortingTestBase {
 
     @Test
     public void shouldSortSimpleArray() {
-        // given
+        // Given
         int[] given = new int[]{5, 4, 3, 2, 1};
         int[] expected = new int[]{1, 2, 3, 4, 5};
-        // when
+
+        // When
         long startTime = System.currentTimeMillis();
         int[] result = getSortingMethod().sort(given);
         long endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime);
-        // then
+
+        // Then
         assertArrayEquals(expected, result);
     }
 }

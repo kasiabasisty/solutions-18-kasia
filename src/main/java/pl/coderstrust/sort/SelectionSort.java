@@ -15,13 +15,13 @@ public class SelectionSort implements SortingMethod {
     public int[] sort(int[] array) {
         int[] sortedArray = array.clone();
         for (int i = 0; i < sortedArray.length; i++) {
-            int maxIndex = i;
+            int minIndex = i;
             for (int j = i + 1; j < sortedArray.length; j++) {
-                if (sortedArray[j] > sortedArray[maxIndex]) {
-                    maxIndex = j;
+                if (sortedArray[j] < sortedArray[minIndex]) {
+                    minIndex = j;
                 }
             }
-            swap(sortedArray, maxIndex, i);
+            swap(sortedArray, minIndex, i);
         }
         return sortedArray;
     }

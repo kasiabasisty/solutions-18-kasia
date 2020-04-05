@@ -16,7 +16,7 @@ public class BubbleSort implements SortingMethod {
         int[] sortedArray = array.clone();
         for (int i = 0; i < sortedArray.length - 1; i++) {
             for (int j = 0; j < sortedArray.length - 1; j++) {
-                if (sortedArray[j + 1] > sortedArray[j]) {
+                if (sortedArray[j + 1] < sortedArray[j]) {
                     swap(sortedArray, j + 1, j);
                 }
             }
