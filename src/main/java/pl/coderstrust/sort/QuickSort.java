@@ -19,17 +19,17 @@ public class QuickSort implements SortingMethod {
         int high = sortedArray.length - 1;
         if (low < high) {
             int pi = partition(sortedArray, low, high);
-            sort(sortedArray, low, pi - 1);//left
-            sort(sortedArray, pi + 1, high); //right
+            quickSort(sortedArray, low, pi - 1);//left
+            quickSort(sortedArray, pi + 1, high); //right
         }
         return sortedArray;
     }
 
-    private static void sort(int sortedArray[], int low, int high) {
+    private static void quickSort(int sortedArray[], int low, int high) {
         if (low < high) {
             int pi = partition(sortedArray, low, high);
-            sort(sortedArray, low, pi - 1); //left
-            sort(sortedArray, pi + 1, high); //right
+            quickSort(sortedArray, low, pi - 1); //left
+            quickSort(sortedArray, pi + 1, high); //right
         }
     }
 
