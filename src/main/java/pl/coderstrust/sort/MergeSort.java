@@ -15,7 +15,7 @@ public class MergeSort implements SortingMethod {
     @Override
     public int[] sort(int[] array) {
         int[] sortedArray = array.clone();
-        if (sortedArray.length == 1) {
+        if (sortedArray.length == 1 || sortedArray.length == 0) {
             return sortedArray;
         }
         int midpoint = sortedArray.length / 2;
