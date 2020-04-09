@@ -5,7 +5,7 @@ public class NumbersProcessor {
 
     public String processLine(String line) {
 
-        System.out.println("I am from numbers procesor");
+        System.out.println("I am from numbers processor");
         return null;
 
     }
