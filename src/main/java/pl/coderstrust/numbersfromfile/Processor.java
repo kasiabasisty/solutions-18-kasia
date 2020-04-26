@@ -1,7 +1,9 @@
 package pl.coderstrust.numbersfromfile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 //(which should be the entry point of the application responsible for delegating particular tasks to File and Numbers Processors)
 public class Processor {
@@ -13,12 +15,17 @@ public class Processor {
         this.fileProcessor = fileProcessor;
     }
 
-    public void process(String fileName, String resultFileName) {
-        List<String> linesFromFile = fileProcessor.readLinesFromFile(fileName);
+    public void process(String filePath, String resultFilePath) throws IOException {
+        List<String> linesFromFile = fileProcessor.readLinesFromFile(filePath);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
-            resultLines.add(numbersProcessor.processLine(line));
+
+            try (Scanner scanner = new Scanner(line)) {
+                if (line.matches("(\\s*\\d+\\s*)+")) {
+                    resultLines.add(numbersProcessor.processLine(line));
+                }
+            }
         }
-        fileProcessor.writeLinesToFile(resultLines, resultFileName);
+        fileProcessor.writeLinesToFile(resultLines, resultFilePath);
     }
 }

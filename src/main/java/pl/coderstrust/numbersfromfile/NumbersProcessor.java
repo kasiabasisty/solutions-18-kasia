@@ -1,13 +1,19 @@
 package pl.coderstrust.numbersfromfile;
 
+import java.util.ArrayList;
+
 public class NumbersProcessor {
-    //(responsible for transforming list of numbers to sum of numbers and its result)
 
     public String processLine(String line) {
+        line = line.trim().replaceAll("(\\s+)", "+");
+        String[] intParts = line.split("\\+");
+        ArrayList<Integer> myInts = new ArrayList<>();
 
-        System.out.println("I am from numbers processor");
-        return null;
-
+        for (String intPart : intParts) {
+            myInts.add(Integer.parseInt(intPart, 10));
+        }
+        int sum = myInts.stream().mapToInt(Integer::intValue).sum();
+        line = line + "=" + sum;
+        return line;
     }
-
 }
