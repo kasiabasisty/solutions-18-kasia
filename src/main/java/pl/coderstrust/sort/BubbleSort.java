@@ -1,32 +1,16 @@
 package pl.coderstrust.sort;
 
-import java.util.Arrays;
-
 public class BubbleSort implements SortingMethod {
-    public static void main(String[] args) {
-
-        int[] array = {-589, -621, 62, 0, -14};
-        int[] sortedArray = new BubbleSort().sort(array);
-        System.out.println(Arrays.toString(array));
-        System.out.println(Arrays.toString(sortedArray));
-    }
 
     @Override
-    public int[] sort(int[] array) {
-        int[] sortedArray = array.clone();
-        for (int i = 0; i < sortedArray.length - 1; i++) {
-            for (int j = 0; j < sortedArray.length - 1; j++) {
-                if (sortedArray[j + 1] < sortedArray[j]) {
-                    swap(sortedArray, j + 1, j);
+    public void sort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - 1; j++) {
+                if (array[j + 1] < array[j]) {
+                    Swapper.swap(array, j + 1, j);
                 }
             }
         }
-        return sortedArray;
-    }
-
-    private static void swap(int[] array, int a, int b) {
-        int temp = array[a];
-        array[a] = array[b];
-        array[b] = temp;
     }
 }
+
