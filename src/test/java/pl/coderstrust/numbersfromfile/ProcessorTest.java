@@ -41,3 +41,11 @@ class ProcessorTest {
         verify(fileProcessor).writeLinesToFile(Arrays.asList("1+2+3=6", "4+5+6=15"), "result.txt");
     }
 }
+
+
+// For test purpose you should use Mockito framework (for mocking dependencies and unit testing particular
+// classes in isolation) and JUnitParams library (for providing more than one different input data to your tests
+// without duplicating tests). In our case you should mock NumbersProcessor and FileProcessor.
+
+//Once you have the unit tests then please also write an integration test which is checking the full flow
+// of application - getting the input file and returning the processed output file.

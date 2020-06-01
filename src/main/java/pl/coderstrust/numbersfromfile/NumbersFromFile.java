@@ -11,5 +11,6 @@ public class NumbersFromFile {
         Processor processor = new Processor(numbersProcessor, fileProcessor);
 
         processor.process("src/main/resources/1000.txt", "src/main/resources/1000_result.txt");
+
     }
 }

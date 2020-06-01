@@ -19,7 +19,6 @@ public class Processor {
         List<String> linesFromFile = fileProcessor.readLinesFromFile(filePath);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
-
             try (Scanner scanner = new Scanner(line)) {
                 if (line.matches("(\\s*\\d+\\s*)+")) {
                     resultLines.add(numbersProcessor.processLine(line));
