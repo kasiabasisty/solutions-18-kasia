@@ -2,14 +2,18 @@ package pl.coderstrust.figures;
 
 public class Square implements Figure {
 
-    private double length;
+    private double sideLength;
 
-    public Square(double length) {
-        this.length = length;
+    public Square(double sideLength) {
+        if (sideLength < 0) {
+            throw new IllegalArgumentException("Side's length can not be lower than zero.");
+        } else {
+            this.sideLength = sideLength;
+        }
     }
 
     @Override
     public double calculateArea() {
-        return Math.pow(length, 2.0);
+        return Math.pow(sideLength, 2.0);
     }
 }

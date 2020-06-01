@@ -2,63 +2,33 @@ package pl.coderstrust.figures;
 
 import org.junit.jupiter.api.Test;
 
-class FigureTest {
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    Circle circle;
-    Rectangle rectangle;
-    Square square;
-    Trapezoid trapezoid;
-    //Triangle triangle = new Triangle(5.0, 5.0);?
+class FigureTest {
 
     @Test
     void shouldCalculateCircleArea() {
-        //Given
+        //given
+        Figure figure = new Circle(5.0);
+        double expected = 78.5;
 
-        //double input = ?
+        //when
+        double result = figure.calculateArea();
 
-        //When
-
-        //Then
-
+        //then
+        assertThat(expected, is(result));
     }
 
     @Test
-    void shouldCalculateRectangleArea() {
-        //Given
+    void shouldThrowIllegalArgumentExceptionWhenRadiusIsNegative() {
+        //given
 
-        //When
+        //when
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Circle(-5.0));
 
-        //Then
-
-    }
-
-    @Test
-    void shouldCalculateSquareArea() {
-        //Given
-
-        //When
-
-        //Then
-
-    }
-
-    @Test
-    void shouldCalculateTrapezoidArea() {
-        //Given
-
-        //When
-
-        //Then
-
-    }
-
-    @Test
-    void shouldCalculateTriangleArea() {
-        //Given
-
-        //When
-
-        //Then
-
+        //then
+        assertThat(exception.getMessage(), is("Radius can not be lower than zero."));
     }
 }
