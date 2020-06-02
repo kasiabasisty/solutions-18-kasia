@@ -1,8 +1,8 @@
 package pl.coderstrust.figures;
 
 public class Figures {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         Figure circle = new Circle(5.0);
         Figure rectangle = new Rectangle(5.0, 5.0);
         Figure square = new Square(5.0);

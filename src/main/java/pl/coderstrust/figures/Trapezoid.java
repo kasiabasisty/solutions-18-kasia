@@ -2,21 +2,16 @@ package pl.coderstrust.figures;
 
 public class Trapezoid implements Figure {
 
-    private double lengthOfBaseOne;
-    private double lengthOfBaseTwo;
-    private double height;
+    private final double lengthOfBaseOne;
+    private final double lengthOfBaseTwo;
+    private final double height;
 
     public Trapezoid(double lengthOfBaseOne, double lengthOfBaseTwo, double height) {
-        if ((lengthOfBaseOne < 0) || (lengthOfBaseTwo < 0)) {
-            throw new IllegalArgumentException("Base's length can not be lower than zero.");
+        if ((lengthOfBaseOne <= 0) || (lengthOfBaseTwo <= 0) || (height <= 0)) {
+            throw new IllegalArgumentException("No line segment can be lower or equal to zero.");
         } else {
             this.lengthOfBaseOne = lengthOfBaseOne;
             this.lengthOfBaseTwo = lengthOfBaseTwo;
-        }
-
-        if (height < 0) {
-            throw new IllegalArgumentException("Height can not be lower than zero.");
-        } else {
             this.height = height;
         }
     }

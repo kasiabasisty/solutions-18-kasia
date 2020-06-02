@@ -18,17 +18,11 @@ class SquareTest {
         double result = square.calculateArea();
 
         //then
-        assertThat(expected, is(result));
+        assertThat(result, is(expected));
     }
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenSideLengthIsNegative() {
-        //given
-
-        //when
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Square(-5.0));
-
-        //then
-        assertThat(exception.getMessage(), is("Side's length can not be lower than zero."));
+        assertThrows(IllegalArgumentException.class, () -> new Square(-5.0));
     }
 }

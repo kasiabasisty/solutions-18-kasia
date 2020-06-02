@@ -23,23 +23,11 @@ class TriangleTest {
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenBaseLengthIsNegative() {
-        //given
-
-        //when
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Triangle(-5.0, 1.0));
-
-        //then
-        assertThat(exception.getMessage(), is("Base's length can not be lower than zero."));
+        assertThrows(IllegalArgumentException.class, () -> new Triangle(-5.0, 1.0));
     }
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenHeightIsNegative() {
-        //given
-
-        //when
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Triangle(1.0, -5.0));
-
-        //then
-        assertThat(exception.getMessage(), is("Height can not be lower than zero."));
+        assertThrows(IllegalArgumentException.class, () -> new Triangle(1.0, -5.0));
     }
 }

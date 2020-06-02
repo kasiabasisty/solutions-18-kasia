@@ -18,28 +18,16 @@ class RectangleTest {
         double result = rectangle.calculateArea();
 
         //then
-        assertThat(expected, is(result));
+        assertThat(result, is(expected));
     }
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenLengthIsNegative() {
-        //given
-
-        //when
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Rectangle(-5.0, 1.0));
-
-        //then
-        assertThat(exception.getMessage(), is("Length can not be lower than zero."));
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(-5.0, 1.0));
     }
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenWidthIsNegative() {
-        //given
-
-        //when
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Rectangle(1.0, -5.0));
-
-        //then
-        assertThat(exception.getMessage(), is("Width can not be lower than zero."));
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(1.0, -5.0));
     }
 }
