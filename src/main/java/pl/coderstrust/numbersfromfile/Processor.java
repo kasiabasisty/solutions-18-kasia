@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//(which should be the entry point of the application responsible for delegating particular tasks to File and Numbers Processors)
 public class Processor {
     private NumbersProcessor numbersProcessor;
     private FileProcessor fileProcessor;
