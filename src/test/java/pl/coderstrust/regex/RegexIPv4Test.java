@@ -23,7 +23,7 @@ class RegexIPv4Test {
         assertThat(actual, is(false));
     }
 
-    @Disabled
+    @Disabled("Took 35 min to execute")
     @Test
     void shouldReturnTrueForEveryProvidedValidIPv4() {
 
@@ -46,19 +46,16 @@ class RegexIPv4Test {
             }
         }
     }
-    
+
     @ParameterizedTest
-    @ValueSource(strings = {"0.%s.0.0", "0.0.0", "0.%s.0.0", "0.%s.0.0"})
-    void shouldReturnTrueForOneChangingNumberAndRestFixed() {
+    @ValueSource(strings = {"%s.0.0.0", "0.%s.0.0", "0.0.%s.0", "0.0.0.%s"})
+    void shouldReturnTrueForOneChangingNumberAndRestFixed(String strings) {
 
         RegexIPv4 regexIPv4 = new RegexIPv4();
 
         for (int i = 0; i <= 255; i++) {
             //given
-
-            String format = "0.%s.0.0";
-
-            String input = String.format(format, i);
+            String input = String.format(strings, i);
 
             //when
             boolean actual = regexIPv4.isIpAddress(input);
@@ -68,5 +65,3 @@ class RegexIPv4Test {
         }
     }
 }
-//      After running such test please use @Disabled annotation to ignore it. In the annotation please provide
-//      the real time it took to execute the test on you machine (it's about 30 minutes).
