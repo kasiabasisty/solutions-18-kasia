@@ -1,29 +1,32 @@
 package pl.coderstrust.numbersfromfile;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import java.util.stream.Stream;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class NumbersProcessorTest {
 
     @ParameterizedTest
-    @MethodSource("")
-    void shouldReturnProcessedLine() {
+    @MethodSource("shouldProvideLinesToRead")
+    void shouldReturnProcessedLine(String input, String expected) {
         //given
-        File file = new File("sample.txt");
+        NumbersProcessor numbersProcessor = new NumbersProcessor();
 
-        try {
-            List<String> contents = FileUtils.readLines(file, "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         //when
+        String actual = numbersProcessor.processLine(input);
 
         //then
+        assertThat(actual, is(expected));
+    }
 
+    private static Stream<Arguments> shouldProvideLinesToRead() {
+        return Stream.of(Arguments.of("2 4 56 4323", "2+4+56+4323=4385"),
+                (Arguments.of("435  204   756   23 0   ", "435+204+756+23+0=1418"))
+        );
     }
 }

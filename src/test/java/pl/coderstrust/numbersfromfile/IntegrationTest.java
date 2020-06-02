@@ -20,3 +20,6 @@ class IntegrationTest {
 
     }
 }
+
+//Once you have the unit tests then please also write an integration test which is checking the full flow
+// of application - getting the input file and returning the processed output file.
