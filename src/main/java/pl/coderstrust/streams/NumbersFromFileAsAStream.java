@@ -3,6 +3,8 @@ package pl.coderstrust.streams;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -10,22 +12,24 @@ public class NumbersFromFileAsAStream {
 
     public static void main(String[] args) throws IOException {
         String inputFilePath = "src/main/resources/1000.txt";
-        ReadProcessAndWriteLinesToAFile(inputFilePath);
+        String resultFilePath = "src/main/resources/1000_result.txt";
+        ReadProcessAndWriteLinesToAFile(inputFilePath, resultFilePath);
     }
 
-    public static void ReadProcessAndWriteLinesToAFile(String inputFilePath) throws IOException {
+    public static void ReadProcessAndWriteLinesToAFile(String inputFilePath, String resultFilePath) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(inputFilePath))) {
-            stream
-                    .filter(line -> line.matches("line3"))
-                    .map(String::toUpperCase)
+            List<String> stringList = stream
+                    .filter(line -> line.matches("(\\s*\\d+\\s*)+"))
+                    .map(line -> {
+                        Stream<String> stringStream = Arrays.stream(line.trim().split("\\s*"));
+                        int sum = stringStream.mapToInt(Integer::parseInt).sum();
+                        return (stringStream.reduce("", (a, b) -> a + "+" + b)) + "=" + sum;
+                    })
                     .collect(Collectors.toList());
+
+            //System.out.println(Arrays.toString(stringList.toArray()));
+
         }
+        //    Files.write(Paths.get(resultFilePath), stringList);
     }
 }
-
-   /* The easy way which is proven to work is as follows:
-        1) Use Files.lines() to read file as stream
-        2) Filter out lines which are not matching pattern "only whitespaces and numbers"
-        3) Use map operation which will inside split the line by whitespace and convert that to stream (Arrays.stream() can be useful, then use reduce operation to get numbers concatenated with "+", then use the same trick as above to calculate the sum of numbers and concatenate it with above string)
-        4) Write each line to a file - just using PrintWriter and forEach or use Files.write() method
-    */
