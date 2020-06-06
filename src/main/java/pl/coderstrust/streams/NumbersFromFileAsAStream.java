@@ -21,15 +21,13 @@ public class NumbersFromFileAsAStream {
             List<String> stringList = stream
                     .filter(line -> line.matches("(\\s*\\d+\\s*)+"))
                     .map(line -> {
-                        Stream<String> stringStream = Arrays.stream(line.trim().split("\\s*"));
-                        int sum = stringStream.mapToInt(Integer::parseInt).sum();
-                        return (stringStream.reduce("", (a, b) -> a + "+" + b)) + "=" + sum;
+                        Stream<String> stringStream = Arrays.stream(line.trim().split("\\s+"));
+                        Stream<String> stringStream1 = Arrays.stream(line.trim().split("\\s+"));
+                        return ((stringStream1.reduce("", (a, b) -> a + "+" + b)) + "=" + stringStream.mapToInt(Integer::parseInt).sum()).substring(1);
                     })
                     .collect(Collectors.toList());
 
-            //System.out.println(Arrays.toString(stringList.toArray()));
-
+            Files.write(Paths.get(resultFilePath), stringList);
         }
-        //    Files.write(Paths.get(resultFilePath), stringList);
     }
 }
